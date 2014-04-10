@@ -21,6 +21,11 @@ private:
   const std::shared_ptr<CountedQuadTree> se;
 };
 
+class CountedQuadTreeRoot : public CountedQuadTreeNode {
+private:
+  float xMin, yMin, xMax, yMax;
+};
+
 class CountedQuadTreeLeaf : public CountedQuadTree {
 private:
   static const int maxPoints = 256;

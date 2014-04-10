@@ -5,10 +5,22 @@
 
 #include "Number.h"
 
+typedef std::pair<Number, Number> Point;
+
 class CountedQuadTree {
 
+};
+
+class CountedQuadTreeNode : public CountedQuadTree {
 private:
-  typedef std::pair<Number, Number> Point;
+  CountedQuadTree* nw;
+  CountedQuadTree* ne;
+  CountedQuadTree* sw;
+  CountedQuadTree* se;
+};
+
+class CountedQuadTreeLeaf : public CountedQuadTree {
+private:
 
 };
 

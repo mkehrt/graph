@@ -8,6 +8,7 @@
 #include "Number.h"
 
 class CountedQuadTree {
+protected:
   typedef std::pair<Number, Number> Point;
 };
 
@@ -23,13 +24,13 @@ private:
 
 class CountedQuadTreeRoot : public CountedQuadTreeNode {
 private:
-  float xMin, yMin, xMax, yMax;
+  Number xMin, yMin, xMax, yMax;
 };
 
 class CountedQuadTreeLeaf : public CountedQuadTree {
 private:
   static const int maxPoints = 256;
-  std::vector<point> points;
+  std::vector<Point> points;
 
   const std::shared_ptr<CountedQuadTree> split();
 };

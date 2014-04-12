@@ -10,6 +10,9 @@
 class CountedQuadTree {
 protected:
   typedef std::pair<Number, Number> Point;
+private:
+  CountedQuadTree();
+  CountedQuadTree(const CountedQuadTree&);
 };
 
 class CountedQuadTreeNode : public CountedQuadTree {

@@ -16,7 +16,7 @@ public:
  
   static T fromPoints(Points &);
 
-  virtual bool contains(const Point &) const = 0;
+  bool contains(const Point &) const;
   virtual T cover(const Rect &) const = 0;
 
 protected:
@@ -30,6 +30,7 @@ protected:
 class CountedQuadTreeNode : public CountedQuadTree {
 public:
   CountedQuadTreeNode(int, Rect &, Points &);
+  T cover(const Rect &) const;
 
 private:
   T nw;
@@ -41,6 +42,7 @@ private:
 class CountedQuadTreeLeaf : public CountedQuadTree {
 public: 
   CountedQuadTreeLeaf(int, Rect &, Points &);
+  T cover(const Rect &) const;
 
 private:
   static const int maxPoints = 256;

@@ -5,30 +5,32 @@
 #include <utility>
 #include <vector>
 
+#include "Geometry.h"
 #include "Number.h"
 
-typedef const std::pair<const Number, const Number> Point;
-typedef const std::pair<const Point, const Point> Rect;
+using namespace geometry;
 
 class CountedQuadTree {
 public:
   typedef const std::shared_ptr<const CountedQuadTree> T;
  
-  static T fromPoints(const std::vector<Point>&);
+  static T fromPoints(Points &);
 
-  bool contains(const Point &) const;
-  T cover(const Rect &) const;
+  virtual bool contains(const Point &) const = 0;
+  virtual T cover(const Rect &) const = 0;
 
-private:
-  CountedQuadTree();
-  CountedQuadTree(const CountedQuadTree&);
+protected:
+  CountedQuadTree(int, Rect &);
 
   int count;
-  Number xMin, yMin, xMax, yMax;
+  Rect quad;
 };
 
 
 class CountedQuadTreeNode : public CountedQuadTree {
+public:
+  CountedQuadTreeNode(int, Rect &, Points &);
+
 private:
   T nw;
   T ne;
@@ -37,12 +39,12 @@ private:
 };
 
 class CountedQuadTreeLeaf : public CountedQuadTree {
-public:
-  T split();
+public: 
+  CountedQuadTreeLeaf(int, Rect &, Points &);
 
 private:
   static const int maxPoints = 256;
-  std::vector<Point> points;
+  Points points;
 
 };
 

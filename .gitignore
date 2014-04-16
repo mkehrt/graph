@@ -4,6 +4,9 @@
 *.o
 *.obj
 
+# Precompiled headers
+*.h.gch
+
 # Compiled Dynamic libraries
 *.so
 *.dylib
@@ -19,3 +22,7 @@
 *.exe
 *.out
 *.app
+
+# Other
+*.sw?
+*~
